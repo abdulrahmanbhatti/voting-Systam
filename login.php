@@ -1,3 +1,34 @@
+<?php
+session_start();
+include('include/connection.php');
+if(isset($_POST['login'])){
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+    $query = "SELECT * FROM voters WHERE email ='$email' AND password ='$password'";
+   $result= $conn->query($query);
+
+   if($result->num_rows > 0){
+    $voter =  $result->fetch_assoc();
+    $_SESSION['email']=$voter['email'];
+    $_SESSION['name']=$voter['name'];
+    $_SESSION['vid']=$voter['vid'];
+    header('location:voters/dashboard.php');
+
+   }
+   else {
+        echo "<script>
+        alert('Invalid Credentials ');
+         header('location:login.php');
+        </script>";
+       
+   }
+}
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +48,7 @@
         <div class="col-md-3 m-auto voter-login-form">
             <center><h4><u>Voter Login Form </u></h4></center>
             <br>
-            <form action="">
+            <form action="login.php" method = "POST">
              <div class="form-group">
                 <label for="email">Enter Email </label>
                 <input type="email" class ="form-control" name="email" placeholder="Enter email " required >
