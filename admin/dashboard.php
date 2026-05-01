@@ -18,8 +18,8 @@ if(isset($_POST['register'])){
     move_uploaded_file($_FILES['image']['tmp_name'], $image_path);
     
    
-    $query = "INSERT INTO votegroup (name, email, password, mobile, img, address, total_vote)
-              VALUES ('$name', '$email', '$password', '$mobile', '$image', '$address', 0)";
+    $query = "INSERT INTO votegroup (name, email, password, mobile, img, address, total_vote ,active)
+              VALUES ('$name', '$email', '$password', '$mobile', '$image', '$address', 0,1)";
     
     $result = $conn->query($query);
     
@@ -65,9 +65,9 @@ if(isset($_POST['register'])){
             <br>
             <a id="view_group" class="btn btn-warning  mt-3 mr-3">View Groups</a>
             <br>
-            <a href="" class="btn btn-success  mt-3 mr-3">View Votes</a>
+            <a id="view_vote" class="btn btn-success  mt-3 mr-3">View Votes</a>
             <br>
-            <a href="" class="btn btn-info  mt-3 mr-3">View Result </a>
+            <a id="view_result" class="btn btn-info  mt-3 mr-3">View Result </a>
             <br>
             <a href="" class="btn btn-primary  mt-3 mr-3">Reset Voting</a>
             <br>
@@ -92,6 +92,16 @@ if(isset($_POST['register'])){
      $(document).ready(function(){
         $("#view_group").click(function(){
             $("#right-side").load('view_group.php');
+        })
+    });
+     $(document).ready(function(){
+        $("#view_vote").click(function(){
+            $("#right-side").load('view_voter.php');
+        })
+    });
+    $(document).ready(function(){
+        $("#view_result").click(function(){
+            $("#right-side").load('view_result.php');
         })
     });
 </script>

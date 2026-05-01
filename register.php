@@ -13,8 +13,8 @@ if(isset($_POST['register'])){
     $address=$_POST['address'];
     $image_path="voters/images/" . basename($_FILES['image']['name']);
     move_uploaded_file($_FILES['image']['tmp_name'],$image_path);
-    $query = "INSERT INTO voters (name, email, password, mobile, img, address, voting)
-    VALUES ('$name', '$email', '$password', '$mobile', '$image', '$address', 'no')";
+    $query = "INSERT INTO voters (name, email, password, mobile, img, address, voting, active)
+    VALUES ('$name', '$email', '$password', '$mobile', '$image', '$address', 'no',1)";
     $result= $conn->query($query);
     if($result){
         echo "<script>

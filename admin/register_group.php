@@ -18,7 +18,7 @@
         <div class="col-md-4 m-auto voter-login-form">
             <center><h4><u>Groups Registration Form </u></h4></center>
             <br>
-            <form action="register_group.php" method="POST" enctype="multipart/form-data" onsubmit =" return validateForm()">
+            <form action="dashboard.php" method="POST" enctype="multipart/form-data" onsubmit =" return validateForm()">
             <div class="form-group">
                 <label for="name">Enter Name </label>
                 <input type="text" class ="form-control" name="name" id="name"placeholder="Enter Name " required >
