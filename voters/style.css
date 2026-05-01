@@ -1,0 +1,17 @@
+.header{
+    background-color: rgb(64, 9, 114);
+    color: white;
+    height: 9vh;
+    text-align: center;
+    padding-top: 1%;
+
+}
+#lest-side{
+    margin-left: 3%;
+    margin-top: 3%;
+    border-right: 2px solid #000;
+}
+#right-side{
+    margin-left: 3%;
+    margin-top: 3%;
+}
