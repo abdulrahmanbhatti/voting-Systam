@@ -58,7 +58,7 @@ include('../include/connection.php');
 
 
                 </table>
-                <a href="" class="btn btn-primary">Edit Profile</a>
+                <a href="edit_profile.php?" class="btn btn-primary">Edit Profile</a>
                 <a href="../logout.php" class="btn btn-danger">Logout</a>
             </div>
 
