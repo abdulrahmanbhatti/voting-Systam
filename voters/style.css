@@ -18,4 +18,6 @@
 #edit_profile{
     background-color: whitesmoke;
     box-shadow: 2pxx 2px 2px 2px ;
+    padding: 15px;
+    border-radius: 15px;
 }
