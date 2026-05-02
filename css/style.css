@@ -25,3 +25,15 @@
     min-width: 600px;
     
 }
+#card{
+    border: 2px solid black;
+    background-color: whitesmoke;
+    box-shadow: 2px 2px 2px 2px gray;
+    border-radius: 15px;
+    margin-left: 25px;
+    padding-top: 10px;
+    padding-left: 25px;
+}
+#card:hover{
+    background-color:burlywood;
+}

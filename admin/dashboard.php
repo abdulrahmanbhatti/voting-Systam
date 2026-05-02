@@ -1,6 +1,31 @@
 <?php
 session_start();
 include('../include/connection.php');
+$total_reg_voter=0;
+$total_act_voter=0;
+$total_reg_group=0;
+$total_act_group=0;
+
+$query = "SELECT COUNT(*) AS total_reg_voter FROM voters";
+$result = $conn->query($query);
+$voter= $result->fetch_assoc();
+$total_reg_voter= $voter['total_reg_voter'];
+
+$query = "SELECT COUNT(*) AS total_act_voter FROM voters WHERE active=1";
+$result = $conn->query($query);
+$voter= $result->fetch_assoc();
+$total_act_voter= $voter['total_act_voter'];
+
+$query = "SELECT COUNT(*) AS total_reg_group FROM votegroup";
+$result = $conn->query($query);
+$group= $result->fetch_assoc();
+$total_reg_group= $group['total_reg_group'];
+
+$query = "SELECT COUNT(*) AS total_act_group FROM votegroup WHERE active=1 ";
+$result = $conn->query($query);
+$group= $result->fetch_assoc();
+$total_act_group= $group['total_act_group'];
+
 if(isset($_POST['register'])){
     include('../include/connection.php');
     
@@ -50,6 +75,17 @@ if(isset($_POST['register'])){
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../include/jquery.js"></script>
+    <!-- <style>
+        #card{
+    border: 2px solid black;
+    background-color: whitesmoke;
+    box-shadow: 2px 2px 2px 2px gray;
+    border-radius: 15px;
+    margin-left: 25px;
+    padding-top: 10px;
+    padding-left: 25px;
+}
+    </style> -->
 </head>
 <body>
     <div class="container-fluid header">
@@ -69,14 +105,42 @@ if(isset($_POST['register'])){
             <br>
             <a id="view_result" class="btn btn-info  mt-3 mr-3">View Result </a>
             <br>
-            <a href="" class="btn btn-primary  mt-3 mr-3">Reset Voting</a>
+            <a href="reset_voting.php" class="btn btn-primary  mt-3 mr-3">Reset Voting</a>
             <br>
             <a href="../logout.php" class="btn btn-danger  mt-3 mr-3">logout</a>
-
             </div>
             <div class="col-md-10 mt-5 pt-3 pl-3" id="right-side">
-                <h3>Admin Dashboard Page</h3>
-
+                <h3 class = "pb-3 mt-3 ml-3 text-decoration-underline">Admin Dashboard Page</h3>
+                <div class="row">
+                    <div class="col-md-3" id ="card">
+                        <h5>Total Registered Voters </h5>
+                        <hr>
+                        <h5>
+                            <?php echo $total_reg_voter ?>
+                        </h5>
+                     </div>
+                     <div class="col-md-3" id ="card">
+                        <h5>Total Active  Voters </h5>
+                        <hr>
+                        <h5>
+                            <?php echo $total_act_voter ?>
+                        </h5>
+                     </div>
+                     <div class="col-md-3" id ="card">
+                        <h5>Total Registered Group </h5>
+                        <hr>
+                        <h5>
+                            <?php echo $total_reg_group ?>
+                        </h5>
+                     </div>
+                     <div class="col-md-3" id ="card">
+                        <h5>Total Active Group </h5>
+                        <hr>
+                        <h5>
+                            <?php echo $total_act_group ?>
+                        </h5>
+                    </div>                    
+                </div>
             </div>
         </div>
 
