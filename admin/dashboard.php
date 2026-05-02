@@ -37,17 +37,12 @@ if(isset($_POST['register'])){
     $address = $_POST['address'];
     if (!file_exists("../images/")) {
         mkdir("../images/", 0777, true);
-    }
-    
+    }   
     $image_path = "images/" . basename($_FILES['image']['name']);
     move_uploaded_file($_FILES['image']['tmp_name'], $image_path);
-    
-   
     $query = "INSERT INTO votegroup (name, email, password, mobile, img, address, total_vote ,active)
               VALUES ('$name', '$email', '$password', '$mobile', '$image', '$address', 0,1)";
-    
-    $result = $conn->query($query);
-    
+    $result = $conn->query($query);   
     if($result){
         echo "<script>
         alert('Groups Register Successfully');
@@ -106,6 +101,9 @@ if(isset($_POST['register'])){
             <a id="view_result" class="btn btn-info  mt-3 mr-3">View Result </a>
             <br>
             <a href="reset_voting.php" class="btn btn-primary  mt-3 mr-3">Reset Voting</a>
+            <br>
+           <!-- <a href="vote.php" class="btn btn-warning mt-3 mr-3">votes</a> -->
+            <a id="view_votes" class="btn btn-warning mt-3 mr-3">Votes</a>
             <br>
             <a href="../logout.php" class="btn btn-danger  mt-3 mr-3">logout</a>
             </div>
@@ -168,4 +166,9 @@ if(isset($_POST['register'])){
             $("#right-side").load('view_result.php');
         })
     });
+    $(document).ready(function(){
+    $("#view_votes").click(function(){
+        $("#right-side").load('vote.php');
+    });
+});
 </script>
